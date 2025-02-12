@@ -25,16 +25,20 @@
           placeholder="Enter player 2 name.."
         />
         <br /><br />
-        <input class="btn" type="submit" onclick="handleSubmit()" />
+        <input class="btn" type="submit" onclick="handleSubmit(event)" />
       </form>
     </div>
     <script>
-      function handleSubmit() {
-          const p1name = document.getElementById('p1name').value;
-          const p2name = document.getElementById('p2name').value;
+      function handleSubmit(event) {
+        event.preventDefault();
+        const p1name = document.getElementById('p1name').value;
+        const p2name = document.getElementById('p2name').value;
+        if (typeof sessionStorage !== 'undefined') {
           sessionStorage.setItem("p1name", p1name);
           sessionStorage.setItem("p2name", p2name);
-          return;
+        } else {
+          console.error('Session storage is not available');
+        }
       }
     </script>
   </body>
